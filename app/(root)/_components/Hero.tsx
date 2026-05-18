@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { memo, useMemo, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -9,17 +9,26 @@ const VIDEOS = [
   "/videos/helping-builders-2.mp4",
   "/videos/helping-builders-3.mp4",
   "/videos/helping-builders-4.mp4",
-];
+] as const;
+
+const CARD_REPEAT_COUNT = 4;
 
 type ProductCardProps = {
   videoUrl: string;
-  setRef: (el: HTMLDivElement | null) => void;
+  setCardRef: (el: HTMLDivElement | null) => void;
+  setVideoRef: (el: HTMLVideoElement | null) => void;
+  setOverlayRef: (el: HTMLDivElement | null) => void;
 };
 
-function ProductCard({ videoUrl, setRef }: ProductCardProps) {
+const ProductCard = memo(function ProductCard({
+  videoUrl,
+  setCardRef,
+  setVideoRef,
+  setOverlayRef,
+}: ProductCardProps) {
   return (
     <div
-      ref={setRef}
+      ref={setCardRef}
       className={[
         "absolute left-1/2 top-1/2",
         "h-72 w-65 md:h-96 md:w-[320px]",
@@ -35,28 +44,40 @@ function ProductCard({ videoUrl, setRef }: ProductCardProps) {
       }}
     >
       <video
+        ref={setVideoRef}
         src={videoUrl}
         loop
         muted
         playsInline
-        preload="metadata" // autoPlay removed to prevent network jam
-        className="h-full w-full object-cover pointer-events-none"
+        preload="metadata"
+        className="pointer-events-none h-full w-full object-cover"
+      />
+
+      <div
+        ref={setOverlayRef}
+        className="pointer-events-none absolute inset-0 bg-black"
+        aria-hidden="true"
       />
     </div>
   );
-}
+});
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement | null>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const videosRef = useRef<(HTMLVideoElement | null)[]>([]);
+  const overlaysRef = useRef<(HTMLDivElement | null)[]>([]);
+  const activeVideosRef = useRef<Set<number>>(new Set());
 
   const extendedCards = useMemo(() => {
-    return [...VIDEOS, ...VIDEOS, ...VIDEOS, ...VIDEOS];
+    return Array.from({ length: CARD_REPEAT_COUNT }, () => VIDEOS).flat();
   }, []);
 
   useGSAP(
     () => {
       const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+      const videos = videosRef.current;
+      const overlays = overlaysRef.current;
 
       if (!cards.length) return;
 
@@ -66,9 +87,48 @@ export default function Hero() {
 
       let progress = 0;
       let ticker: gsap.TickerCallback | null = null;
-      let resizeTimer: ReturnType<typeof setTimeout>;
+      let resizeTimer: ReturnType<typeof setTimeout> | null = null;
 
-      const setupMarquee = () => {
+      const cardSetters = cards.map((card) => {
+        return gsap.quickSetter(card, "css") as (value: gsap.TweenVars) => void;
+      });
+
+      const overlaySetters = overlays.map((overlay) => {
+        if (!overlay) return null;
+
+        return gsap.quickSetter(overlay, "opacity") as (value: number) => void;
+      });
+
+      const syncVideoPlayback = (nextActiveVideos: Set<number>) => {
+        const currentActiveVideos = activeVideosRef.current;
+
+        currentActiveVideos.forEach((index) => {
+          if (nextActiveVideos.has(index)) return;
+
+          const video = videos[index];
+
+          if (video && !video.paused) {
+            video.pause();
+          }
+        });
+
+        nextActiveVideos.forEach((index) => {
+          if (currentActiveVideos.has(index)) return;
+
+          const video = videos[index];
+
+          if (video && video.paused) {
+            video.play().catch(() => {
+              // Browser autoplay policies can reject play().
+              // Since videos are decorative, failing silently is fine.
+            });
+          }
+        });
+
+        activeVideosRef.current = nextActiveVideos;
+      };
+
+      const createMarquee = () => {
         if (ticker) {
           gsap.ticker.remove(ticker);
           ticker = null;
@@ -80,69 +140,60 @@ export default function Hero() {
         const cardWidth = isMobile ? 260 : 320;
         const gap = isMobile ? 12 : 28;
         const itemWidth = cardWidth + gap;
-
         const totalWidth = itemWidth * cards.length;
+
+        const maxDistance = isMobile
+          ? viewportWidth * 0.85
+          : viewportWidth * 0.65;
 
         const wrapX = gsap.utils.wrap(-totalWidth / 2, totalWidth / 2);
 
         const updateMarquee: gsap.TickerCallback = () => {
           if (!prefersReducedMotion) {
             progress -= 0.00022 * gsap.ticker.deltaRatio(60);
+
             if (progress < 0) {
               progress += 1;
             }
           }
 
-          cards.forEach((card, index) => {
+          const nextActiveVideos = new Set<number>();
+
+          cards.forEach((_, index) => {
             const rawX = index * itemWidth + progress * totalWidth;
             const centeredX = rawX - totalWidth / 2;
             const x = wrapX(centeredX);
 
-            const maxDistance = isMobile
-              ? viewportWidth * 0.85
-              : viewportWidth * 0.65;
-
             const normalizedDistance = gsap.utils.clamp(-1, 1, x / maxDistance);
 
             const distanceFromCenter = Math.abs(normalizedDistance);
-
-            // --- DYNAMIC PLAY/PAUSE LOGIC ---
-            const video = card.querySelector("video");
-            if (video) {
-              // Threshold 0.25 targets the cards closest to the center
-              if (distanceFromCenter < 0.25) {
-                if (video.paused) video.play().catch(() => {});
-              } else {
-                if (!video.paused) video.pause();
-              }
-            }
-            // --------------------------------
+            const centerStrength = 1 - distanceFromCenter;
 
             const rotateY = -normalizedDistance * (isMobile ? 30 : 48);
 
             const z = gsap.utils.interpolate(
-              isMobile ? -120 : -260,
+              isMobile ? -140 : -280,
               isMobile ? 180 : 420,
-              distanceFromCenter
+              centerStrength
             );
 
             const scale = gsap.utils.interpolate(
               isMobile ? 0.84 : 0.88,
               isMobile ? 1 : 1.08,
-              distanceFromCenter
+              centerStrength
             );
 
-            const opacity = gsap.utils.interpolate(0.82, 1, distanceFromCenter);
+            const opacity = gsap.utils.interpolate(0.72, 1, centerStrength);
 
             const overlayOpacity = gsap.utils.interpolate(
-              isMobile ? 0.56 : 0.68,
+              isMobile ? 0.5 : 0.62,
               0.08,
-              distanceFromCenter
+              centerStrength
             );
 
-            const zIndex = Math.round(distanceFromCenter * 100);
+            const zIndex = Math.round(centerStrength * 100);
 
-            gsap.set(card, {
+            cardSetters[index]({
               xPercent: -50,
               yPercent: -50,
               x,
@@ -154,14 +205,16 @@ export default function Hero() {
               transformOrigin: "50% 50%",
             });
 
-            const overlay = card.querySelector(".shadow-overlay");
+            overlaySetters[index]?.(overlayOpacity);
 
-            if (overlay) {
-              gsap.set(overlay, {
-                opacity: overlayOpacity,
-              });
+            // Only the most visible cards should play.
+            // This avoids decoding many videos at the same time.
+            if (!prefersReducedMotion && centerStrength > 0.78) {
+              nextActiveVideos.add(index);
             }
           });
+
+          syncVideoPlayback(nextActiveVideos);
         };
 
         if (!prefersReducedMotion) {
@@ -170,23 +223,40 @@ export default function Hero() {
         }
       };
 
-      const onResize = () => {
-        clearTimeout(resizeTimer);
+      const handleResize = () => {
+        if (resizeTimer) {
+          clearTimeout(resizeTimer);
+        }
+
         resizeTimer = setTimeout(() => {
-          setupMarquee();
+          createMarquee();
         }, 150);
       };
 
-      setupMarquee();
+      createMarquee();
 
-      window.addEventListener("resize", onResize);
+      window.addEventListener("resize", handleResize);
 
       return () => {
-        window.removeEventListener("resize", onResize);
-        clearTimeout(resizeTimer);
+        window.removeEventListener("resize", handleResize);
+
+        if (resizeTimer) {
+          clearTimeout(resizeTimer);
+        }
+
         if (ticker) {
           gsap.ticker.remove(ticker);
         }
+
+        activeVideosRef.current.forEach((index) => {
+          const video = videos[index];
+
+          if (video && !video.paused) {
+            video.pause();
+          }
+        });
+
+        activeVideosRef.current.clear();
       };
     },
     {
@@ -207,7 +277,7 @@ export default function Hero() {
           We build for growth
         </p>
 
-        <h1 className="text-[clamp(2.5rem,7vw,6rem)] leading-9 md:leading-14 tracking-tight text-white">
+        <h1 className="text-[clamp(2.5rem,7vw,6rem)] leading-9 tracking-tight text-white md:leading-14">
           Impossible is
           <br />
           <span className="font-serif italic tracking-[-0.04em] text-primary">
@@ -238,8 +308,14 @@ export default function Hero() {
             <ProductCard
               key={`${videoUrl}-${index}`}
               videoUrl={videoUrl}
-              setRef={(el) => {
+              setCardRef={(el) => {
                 cardsRef.current[index] = el;
+              }}
+              setVideoRef={(el) => {
+                videosRef.current[index] = el;
+              }}
+              setOverlayRef={(el) => {
+                overlaysRef.current[index] = el;
               }}
             />
           ))}
