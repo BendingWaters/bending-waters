@@ -22,7 +22,7 @@ const LatestNews = async () => {
             <ul className="space-y-4 mb-8">
                 {newsItems.map((item: NewsItem, index: number) => (
                     <li key={index}>
-                        <Link href={`/news/${item.slug?.current}`} className="flex items-start gap-3 text-gray-400 hover:text-np-orange transition-colors group cursor-pointer">
+                        <Link href={`/blog/${item.slug?.current}`} className="flex items-start gap-3 text-gray-400 hover:text-np-orange transition-colors group cursor-pointer">
                             <div className="mt-1 min-w-5">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-np-orange">
                                     <path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

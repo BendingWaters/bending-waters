@@ -108,7 +108,7 @@ export default function LoadMoreNews({
                         return (
                             <Link
                                 key={_id + index}
-                                href={`/news/${slug?.current}`}
+                                href={`/blog/${slug?.current}`}
                                 className="group flex flex-col border-b border-r border-[#1a1a1a] [&:nth-child(3n)]:border-r-0 hover:bg-[#0d0d0d] transition-colors duration-300"
                             >
                                 <div className="relative w-full aspect-[16/10] overflow-hidden bg-[#111]">

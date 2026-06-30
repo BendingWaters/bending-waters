@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MarketHero from "@/components/MarketHero";
@@ -5,11 +7,21 @@ import MarketServiceSection from "./MarketServiceSection";
 import MarketFeaturePanel from "./MarketFeaturePanel";
 import { marketPages, type MarketPageKey } from "@/constants/market-pages";
 
-type MarketPageProps = {
-  page: MarketPageKey;
+type MarketPageSlots = {
+  afterHero?: ReactNode;
+  beforeServices?: ReactNode;
+  afterServices?: ReactNode;
+  beforeFeaturePanel?: ReactNode;
+  afterFeaturePanel?: ReactNode;
+  beforeFooter?: ReactNode;
 };
 
-export default function MarketPage({ page }: MarketPageProps) {
+type MarketPageProps = {
+  page: MarketPageKey;
+  slots?: MarketPageSlots;
+};
+
+export default function MarketPage({ page, slots }: MarketPageProps) {
   const data = marketPages[page];
 
   return (
@@ -24,6 +36,10 @@ export default function MarketPage({ page }: MarketPageProps) {
         ctaText={data.ctaText}
       />
 
+      {slots?.afterHero}
+
+      {slots?.beforeServices}
+
       <MarketServiceSection
         title={data.servicesTitle}
         accent={data.servicesAccent}
@@ -31,6 +47,10 @@ export default function MarketPage({ page }: MarketPageProps) {
         ctaText={data.ctaText}
         theme={data.theme}
       />
+
+      {slots?.afterServices}
+
+      {slots?.beforeFeaturePanel}
 
       <MarketFeaturePanel
         eyebrow={data.eyebrow}
@@ -40,6 +60,10 @@ export default function MarketPage({ page }: MarketPageProps) {
         ctaText={data.ctaText}
         theme={data.theme}
       />
+
+      {slots?.afterFeaturePanel}
+
+      {slots?.beforeFooter}
 
       <Footer />
     </main>

@@ -70,7 +70,7 @@ const NewsGrid = async ({ searchParams }: NewsGridProps) => {
           return (
             <Link
               key={_id}
-              href={`/news/${slug?.current}`}
+              href={`/blog/${slug?.current}`}
               className="group block border-b border-[#1a1a1a]"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -158,7 +158,7 @@ const NewsGrid = async ({ searchParams }: NewsGridProps) => {
             return (
               <Link
                 key={_id}
-                href={`/news/${slug?.current}`}
+                href={`/blog/${slug?.current}`}
                 className="group flex flex-col border-b border-r border-[#1a1a1a] [&:nth-child(3n)]:border-r-0 hover:bg-[#0d0d0d] transition-colors duration-300"
               >
                 {/* Image */}
