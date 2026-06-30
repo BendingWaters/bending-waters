@@ -5,8 +5,6 @@ import { z } from "zod";
 
 export const runtime = "nodejs";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const MAX_FILE_SIZE = 8 * 1024 * 1024;
 
 const allowedMimeTypes = new Set([
@@ -523,6 +521,8 @@ async function sendRegistrationEmail(input: {
   if (!to) {
     throw new Error("Missing BUSINESS_ADMIN_EMAIL");
   }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   const response = await resend.emails.send({
     from,
