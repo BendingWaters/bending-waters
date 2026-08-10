@@ -7,7 +7,21 @@ import { blockContent } from '@/sanity/schemaTypes/blockContent'
 
 import { project } from '@/sanity/schemaTypes/project'
 import { businessRegistration } from './businessRegistrations'
+import { lead } from './lead'
+import { payment } from './payment'
+import { onboarding } from './onboarding'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [news, contact, author, comment, project, blockContent, businessRegistration],
+  types: [
+    news,
+    contact,
+    author,
+    comment,
+    project,
+    blockContent,
+    businessRegistration,
+    lead,
+    payment,
+    onboarding,
+  ],
 }
