@@ -84,6 +84,17 @@ export const PROJECTS_QUERY = defineQuery(`
   }
 `);
 
+export const LAUNCH_PORTFOLIO_QUERY = defineQuery(`
+  *[_type == "project"] | order(_createdAt desc) [0...6] {
+    _id,
+    title,
+    category,
+    slug,
+    mainImage,
+    "description": pt::text(body)[0...160]
+  }
+`);
+
 export const PROJECT_QUERY = defineQuery(`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
