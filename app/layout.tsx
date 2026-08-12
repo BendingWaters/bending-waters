@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import Script from "next/script";
 
 import SmoothScroll from "@/components/SmoothScroll";
+import MetaPixel from "@/components/MetaPixel";
 import Providers from "@/components/Providers";
 import { SanityLive } from "@/sanity/lib/live";
 
@@ -51,6 +51,7 @@ export default function RootLayout({
           <SmoothScroll />
         </Providers>
         <SanityLive />
+        <MetaPixel />
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_GOOGLE_ANALYTICS_ID!} />
     </html>
