@@ -86,6 +86,40 @@ export const lead = defineType({
       type: "string",
     }),
     defineField({
+      name: "priceAwareness",
+      title: "Aware of package cost?",
+      type: "string",
+      options: {
+        list: [
+          { title: "Yes, aware of the cost", value: "aware" },
+          { title: "No, wants more information", value: "needs_info" },
+        ],
+      },
+    }),
+    defineField({
+      name: "paymentReadiness",
+      title: "Payment readiness",
+      type: "string",
+      options: {
+        list: [
+          { title: "Ready to pay immediately", value: "ready_now" },
+          { title: "Ready, but needs some time", value: "ready_soon" },
+          { title: "Still considering options", value: "considering" },
+        ],
+      },
+    }),
+    defineField({
+      name: "paymentPreference",
+      title: "Payment preference (Seven-Day Launch only)",
+      type: "string",
+      options: {
+        list: [
+          { title: "Pay in full", value: "full" },
+          { title: "Pay in installments", value: "installments" },
+        ],
+      },
+    }),
+    defineField({
       name: "callPreferredDate",
       title: "Preferred Call Date",
       type: "date",

@@ -10,7 +10,10 @@ import {
 import type {
   Attribution,
   OpportunityType,
+  PaymentPreference,
+  PaymentReadiness,
   PreferredNextStep,
+  PriceAwareness,
   ProjectTimeline,
   WebsiteStatus,
 } from "@/lib/launch/types";
@@ -35,6 +38,9 @@ export interface FunnelData {
   projectTimeline?: ProjectTimeline;
   preferredNextStep?: PreferredNextStep;
   selectedPackageId?: string;
+  priceAwareness?: PriceAwareness;
+  paymentReadiness?: PaymentReadiness;
+  paymentPreference?: PaymentPreference;
   callPreferredDate?: string;
   callPreferredTime?: string;
   callNotes?: string;

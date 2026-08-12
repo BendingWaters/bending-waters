@@ -16,6 +16,10 @@ export function syncLeadToSheet(row: {
   websiteStatus: string;
   timeline: string;
   preferredNextStep: string;
+  selectedPackage?: string;
+  priceAwareness?: string;
+  paymentReadiness?: string;
+  paymentPreference?: string;
   leadScore: number;
   status: string;
   source: string;

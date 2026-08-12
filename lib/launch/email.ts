@@ -67,6 +67,10 @@ export async function notifySalesOfNewLead(input: {
   websiteStatus?: string;
   projectTimeline?: string;
   preferredNextStep?: string;
+  selectedPackageName?: string;
+  priceAwareness?: string;
+  paymentReadiness?: string;
+  paymentPreference?: string;
   sanityId: string;
 }) {
   const to = process.env.BUSINESS_ADMIN_EMAIL;
@@ -89,6 +93,10 @@ export async function notifySalesOfNewLead(input: {
         <p><strong>Website status:</strong> ${escapeHtml(input.websiteStatus || "—")}</p>
         <p><strong>Timeline:</strong> ${escapeHtml(input.projectTimeline || "—")}</p>
         <p><strong>Next step:</strong> ${escapeHtml(input.preferredNextStep || "—")}</p>
+        <p><strong>Selected package:</strong> ${escapeHtml(input.selectedPackageName || "—")}</p>
+        <p><strong>Aware of cost:</strong> ${escapeHtml(input.priceAwareness || "—")}</p>
+        <p><strong>Payment readiness:</strong> ${escapeHtml(input.paymentReadiness || "—")}</p>
+        <p><strong>Payment preference:</strong> ${escapeHtml(input.paymentPreference || "—")}</p>
         <p><strong>Sanity ID:</strong> ${escapeHtml(input.sanityId)}</p>
       </div>
     `,
