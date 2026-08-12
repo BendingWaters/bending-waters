@@ -1,12 +1,16 @@
 import "server-only";
 import { sanityAdminClient } from "@/sanity/lib/admin";
-import type { Attribution } from "./types";
+import type { Attribution, PaymentPreference, PaymentReadiness, PriceAwareness } from "./types";
 
 interface UpsertLeadInput extends Attribution {
   firstName: string;
   businessName?: string;
   email: string;
   phone: string;
+  selectedPackageId?: string;
+  priceAwareness?: PriceAwareness;
+  paymentReadiness?: PaymentReadiness;
+  paymentPreference?: PaymentPreference;
 }
 
 export async function upsertLeadByEmail(input: UpsertLeadInput) {
@@ -24,6 +28,10 @@ export async function upsertLeadByEmail(input: UpsertLeadInput) {
         firstName: input.firstName,
         businessName: input.businessName,
         phone: input.phone,
+        selectedPackageId: input.selectedPackageId,
+        priceAwareness: input.priceAwareness,
+        paymentReadiness: input.paymentReadiness,
+        paymentPreference: input.paymentPreference,
         updatedAt: now,
       })
       .commit();
@@ -37,6 +45,10 @@ export async function upsertLeadByEmail(input: UpsertLeadInput) {
     businessName: input.businessName,
     email: input.email,
     phone: input.phone,
+    selectedPackageId: input.selectedPackageId,
+    priceAwareness: input.priceAwareness,
+    paymentReadiness: input.paymentReadiness,
+    paymentPreference: input.paymentPreference,
     status: "NEW",
     leadScore: 0,
     priority: "NURTURE",

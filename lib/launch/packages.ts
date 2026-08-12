@@ -127,3 +127,6 @@ export const LAUNCH_PACKAGES: LaunchPackage[] = [
 export function getLaunchPackage(id: string) {
   return LAUNCH_PACKAGES.find((pkg) => pkg.id === id);
 }
+
+/** The only package that currently supports installment payment. */
+export const INSTALLMENT_ELIGIBLE_PACKAGE_ID = "seven-day-launch";

@@ -1,16 +1,35 @@
 import { z } from "zod";
+import { INSTALLMENT_ELIGIBLE_PACKAGE_ID } from "./packages";
 
-export const leadCaptureSchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required"),
-  businessName: z.string().trim().optional(),
-  email: z.string().trim().email("A valid business email is required"),
-  phone: z.string().trim().min(6, "A valid WhatsApp number is required"),
-  source: z.string().trim().optional(),
-  medium: z.string().trim().optional(),
-  campaign: z.string().trim().optional(),
-  referrer: z.string().trim().optional(),
-  landingPage: z.string().trim().optional(),
-});
+export const leadCaptureSchema = z
+  .object({
+    firstName: z.string().trim().min(1, "First name is required"),
+    businessName: z.string().trim().optional(),
+    email: z.string().trim().email("A valid business email is required"),
+    phone: z.string().trim().min(6, "A valid WhatsApp number is required"),
+    selectedPackageId: z.string().trim().min(1, "Please select a package"),
+    priceAwareness: z.enum(["aware", "needs_info"], {
+      error: "Please let us know if you're aware of the package cost",
+    }),
+    paymentReadiness: z.enum(["ready_now", "ready_soon", "considering"], {
+      error: "Please let us know if you're ready to make payment",
+    }),
+    paymentPreference: z.enum(["full", "installments"]).optional(),
+    source: z.string().trim().optional(),
+    medium: z.string().trim().optional(),
+    campaign: z.string().trim().optional(),
+    referrer: z.string().trim().optional(),
+    landingPage: z.string().trim().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.selectedPackageId === INSTALLMENT_ELIGIBLE_PACKAGE_ID && !data.paymentPreference) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Please select a payment preference",
+        path: ["paymentPreference"],
+      });
+    }
+  });
 
 export const qualificationSchema = z.object({
   leadId: z.string().min(1),

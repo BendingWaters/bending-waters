@@ -16,6 +16,12 @@ export type ProjectTimeline =
 
 export type PreferredNextStep = "book_call" | "pay_now";
 
+export type PriceAwareness = "aware" | "needs_info";
+
+export type PaymentReadiness = "ready_now" | "ready_soon" | "considering";
+
+export type PaymentPreference = "full" | "installments";
+
 export type LeadStatus =
   | "NEW"
   | "QUALIFIED"
@@ -52,6 +58,10 @@ export interface LeadCaptureInput extends Attribution {
   businessName?: string;
   email: string;
   phone: string;
+  selectedPackageId: string;
+  priceAwareness: PriceAwareness;
+  paymentReadiness: PaymentReadiness;
+  paymentPreference?: PaymentPreference;
 }
 
 export interface QualificationInput {
@@ -59,7 +69,6 @@ export interface QualificationInput {
   websiteStatus?: WebsiteStatus;
   projectTimeline?: ProjectTimeline;
   preferredNextStep?: PreferredNextStep;
-  selectedPackageId?: string;
 }
 
 export interface LeadRecord extends LeadCaptureInput, QualificationInput {
