@@ -16,8 +16,7 @@ export default function CallConfirmedStep() {
       <h3 className="mt-6 text-2xl font-semibold text-white sm:text-3xl">You&apos;re booked.</h3>
 
       <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-white/60">
-        We&apos;ve received your information and your strategy call is confirmed. Check your email
-        and WhatsApp for the details.
+        We&apos;ve received your information and your strategy call is confirmed. Our team will reach out to you via email or whatsapp.
       </p>
 
       <div className="mt-8">

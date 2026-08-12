@@ -34,3 +34,4 @@ export function trackEvent(event: LaunchAnalyticsEvent, params: Record<string, u
     console.debug(`[analytics] ${event}`, params);
   }
 }
+

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Script from "next/script";
 
 export default function MetaPixel() {
@@ -23,7 +22,8 @@ export default function MetaPixel() {
       </Script>
 
       <noscript>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element -- Meta pixel beacon, must not go through next/image */}
+        <img
           height="1"
           width="1"
           style={{ display: "none" }}
