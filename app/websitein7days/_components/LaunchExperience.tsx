@@ -37,7 +37,7 @@ export default function LaunchExperience({ projects }: { projects: PortfolioProj
           <Process />
           <InformationArchitecture />
           <Portfolio projects={projects} />
-          <SocialProof />
+          {/* <SocialProof /> */}
           <Packages />
           <WhyNow />
           <Faq />
