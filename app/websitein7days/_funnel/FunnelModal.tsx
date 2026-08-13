@@ -39,6 +39,8 @@ export default function FunnelModal() {
       role="dialog"
       aria-modal="true"
       onClick={closeFunnel}
+      onWheel={(event) => event.stopPropagation()}
+      onTouchMove={(event) => event.stopPropagation()}
     >
       <div
         className="relative w-full max-w-lg rounded-3xl border border-white/10 bg-[#0d0d0f] p-6 shadow-2xl shadow-black/50 sm:p-8 my-auto"
