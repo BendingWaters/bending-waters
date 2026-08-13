@@ -35,7 +35,7 @@ export default function FunnelModal() {
 
   return (
     <div
-      className="fixed inset-0 z-100 flex items-center justify-center overflow-y-auto bg-black/75 px-4 py-8 backdrop-blur-sm"
+      className="fixed inset-0 z-100 flex items-center justify-center overflow-y-auto bg-black/75 px-4 py-8 backdrop-blur-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       role="dialog"
       aria-modal="true"
       onClick={closeFunnel}
