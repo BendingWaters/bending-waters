@@ -45,7 +45,7 @@ export function PrimaryButton({
       {...props}
       disabled={props.disabled || loading}
       className={cn(
-        "inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-[15px] font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50",
+        "inline-flex w-full items-center justify-center gap-2 bg-primary px-6 py-4 text-[15px] font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
     >
@@ -64,7 +64,7 @@ export function GhostButton({
     <button
       {...props}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white/80 transition hover:border-white/30 hover:text-white",
+        "inline-flex items-center justify-center gap-2 border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-white/30",
         className
       )}
     >

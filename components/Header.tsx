@@ -236,7 +236,7 @@ export default function Header() {
           {/* "Let's Talk" CTA — desktop */}
           <Link
             href="/contact"
-            className="hidden lg:flex items-center gap-1.5 bg-primary text-[#0a0a0a] px-4 py-2 rounded-full text-[13px] font-semibold
+            className="hidden lg:flex items-center gap-1.5 bg-primary text-white px-4 py-2 text-[13px] font-semibold
               hover:bg-primary transition-colors duration-150 group"
           >
             Let&apos;s Talk
@@ -324,7 +324,7 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={closeMobile}
-              className="flex items-center justify-center gap-2 bg-primary text-[#0a0a0a] font-semibold text-[14px] py-3 rounded-full hover:bg-primary transition-colors"
+              className="flex items-center justify-center gap-2 bg-primary text-white font-semibold text-[14px] py-3 hover:bg-primary transition-colors"
             >
               Let&apos;s Talk
               <ArrowUpRight className="w-4 h-4" />

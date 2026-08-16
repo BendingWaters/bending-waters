@@ -57,7 +57,7 @@ const CareersContent = () => {
               {/* Primary — filled orange */}
               <Link
                 href="/careers"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-black font-black uppercase tracking-widest text-xs transition-all duration-300 hover:bg-white hover:text-black"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white font-black uppercase tracking-widest text-xs transition-all duration-300 hover:bg-white hover:text-black"
               >
                 <span>Search &amp; Apply</span>
                 {/* Arrow that nudges right on hover */}

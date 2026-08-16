@@ -70,13 +70,8 @@ export default function Storytelling() {
       ref={container}
       className="w-full relative py-24 px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Background Image with Overlay */}
+      {/* Background Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/story-bg.png"
-          alt="Studio Background"
-          className="w-full h-full object-cover opacity-40"
-        />
         <div className="absolute inset-0 bg-linear-to-b from-[#111] via-[#111]/80 to-[#111]"></div>
       </div>
 

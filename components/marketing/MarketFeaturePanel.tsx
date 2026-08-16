@@ -50,7 +50,7 @@ export default function MarketFeaturePanel({
             </p>
 
             <div className="mt-8">
-              <Button className="rounded-xl px-8">{ctaText}</Button>
+              <Button className="px-8">{ctaText}</Button>
             </div>
           </div>
 

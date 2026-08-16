@@ -38,7 +38,7 @@ export default function FinalCta() {
               trackEvent("hero_cta_clicked", { placement: "final_cta_primary" });
               openFullFunnel();
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
+            className="inline-flex items-center justify-center gap-2 bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
           >
             Build My Website in 7 Days <ArrowRight className="size-4" />
           </button>
@@ -49,7 +49,7 @@ export default function FinalCta() {
               trackEvent("hero_cta_clicked", { placement: "final_cta_secondary" });
               openFullFunnel();
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-4 text-[15px] font-semibold text-white/85 transition hover:border-white/30 hover:text-white"
+            className="inline-flex items-center justify-center gap-2 border border-white/15 px-7 py-4 text-[15px] font-semibold text-white transition hover:border-white/30"
           >
             Talk to a Strategist
           </button>

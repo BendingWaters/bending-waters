@@ -28,7 +28,7 @@ export default function StickyMobileCta() {
           trackEvent("hero_cta_clicked", { placement: "sticky_mobile" });
           openFullFunnel();
         }}
-        className="flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 text-[15px] font-semibold text-white shadow-lg shadow-primary/20"
+        className="flex w-full items-center justify-center bg-primary px-6 py-3.5 text-[15px] font-semibold text-white shadow-lg shadow-primary/20"
       >
         Build My Website in 7 Days
       </button>

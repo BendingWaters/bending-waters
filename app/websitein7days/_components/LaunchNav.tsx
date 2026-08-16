@@ -48,7 +48,7 @@ export default function LaunchNav() {
           <button
             type="button"
             onClick={handleCta}
-            className="hidden items-center rounded-full bg-primary px-4 py-2 text-[13px] font-semibold text-white transition hover:brightness-110 sm:inline-flex"
+            className="hidden items-center bg-primary px-4 py-2 text-[13px] font-semibold text-white transition hover:brightness-110 sm:inline-flex"
           >
             Build My Website
           </button>
@@ -79,7 +79,7 @@ export default function LaunchNav() {
           <button
             type="button"
             onClick={handleCta}
-            className="mt-2 w-full rounded-full bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+            className="mt-2 w-full bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110"
           >
             Build My Website
           </button>

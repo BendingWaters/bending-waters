@@ -134,7 +134,7 @@ export default function About() {
 
           {/* CTA Button */}
           <div className="content-reveal pt-4">
-            <button className="group relative px-8 py-4 bg-np-orange text-black font-bold rounded-full flex items-center gap-3 overflow-hidden transition-all hover:bg-white hover:shadow-[0_0_20px_rgba(180,255,57,0.4)]">
+            <button className="group relative px-8 py-4 bg-np-orange text-white font-bold flex items-center gap-3 overflow-hidden transition-all hover:bg-black hover:shadow-[0_0_20px_rgba(180,255,57,0.4)]">
               <span className="relative z-10">Discover More</span>
               <div className="relative z-10 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
                 <ArrowUpRight size={18} />

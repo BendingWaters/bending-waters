@@ -34,7 +34,7 @@ export default function WhyNow() {
             trackEvent("hero_cta_clicked", { placement: "why_now" });
             openFullFunnel();
           }}
-          className="mt-9 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
+          className="mt-9 inline-flex items-center justify-center gap-2 bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
         >
           Get Website-Ready <ArrowRight className="size-4" />
         </button>

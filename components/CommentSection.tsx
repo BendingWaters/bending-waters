@@ -84,7 +84,7 @@ const CommentSection = ({ comments = [], postId }: CommentSectionProps) => {
 
                 <button
                     type="submit"
-                    className="w-fit px-8 py-4 bg-np-orange text-black font-bold uppercase tracking-wider rounded hover:bg-white transition-colors mt-4"
+                    className="w-fit px-8 py-4 bg-np-orange text-white font-bold uppercase tracking-wider hover:bg-black transition-colors mt-4"
                 >
                     Post Comment
                 </button>

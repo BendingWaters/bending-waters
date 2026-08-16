@@ -33,7 +33,7 @@ const NewsGrid = async ({ searchParams }: NewsGridProps) => {
         </p>
         <Link
           href="/news"
-          className="inline-flex items-center gap-3 mt-8 px-6 py-3 bg-[#FF5500] text-black text-sm font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300"
+          className="inline-flex items-center gap-3 mt-8 px-6 py-3 bg-[#FF5500] text-white text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300"
         >
           Clear Filters
           <span className="text-base leading-none">→</span>

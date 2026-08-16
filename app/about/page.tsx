@@ -476,7 +476,7 @@ export default function About() {
                 Ubersuggest and AnswerThePublic, new client growth, industry
                 recognition, and another strategic acquisition.
               </p>
-              <button className="group flex items-center gap-3 border border-white/15 hover:border-orange-500 hover:text-orange-400 text-white/60 px-8 py-4 text-sm font-medium transition-all duration-300">
+              <button className="group flex items-center gap-3 border border-white/15 hover:border-orange-500 text-white px-8 py-4 text-sm font-medium transition-all duration-300">
                 <Play
                   size={14}
                   className="fill-current group-hover:fill-orange-400"

@@ -41,7 +41,7 @@ export default function LaunchFooter() {
               trackEvent("hero_cta_clicked", { placement: "footer" });
               openFullFunnel();
             }}
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
+            className="mt-6 inline-flex items-center justify-center gap-2 bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
           >
             Build My Website in 7 Days <ArrowRight className="size-4" />
           </button>

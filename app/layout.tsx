@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Poppins, Jost, Sora, Playfair_Display } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
@@ -11,6 +12,31 @@ import { SanityLive } from "@/sanity/lib/live";
 const bierika = localFont({
   src: "./fonts/bierika.otf",
   variable: "--font-bierika-custom",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+});
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-jost",
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
 export const metadata: Metadata = {
@@ -43,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${bierika.variable} antialiased`}
+        className={`${bierika.variable} ${poppins.variable} ${jost.variable} ${sora.variable} ${playfairDisplay.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         <Providers>

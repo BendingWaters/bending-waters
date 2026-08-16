@@ -67,7 +67,7 @@ export default function ApplicationStory() {
               trackEvent("hero_cta_clicked", { placement: "application_story" });
               openFullFunnel();
             }}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
+            className="inline-flex items-center gap-2 bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
           >
             I Want That Website <ArrowRight className="size-4" />
           </button>

@@ -92,10 +92,10 @@ function PackageCard({ pkg, highlighted }: { pkg: LaunchPackage; highlighted?: b
           }
         }}
         className={cn(
-          "mt-5 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[13px] font-semibold uppercase tracking-wide transition",
+          "mt-5 inline-flex items-center justify-center px-6 py-3.5 text-[13px] font-semibold uppercase tracking-wide transition text-white",
           highlighted
-            ? "bg-primary text-white hover:brightness-110"
-            : "border border-white/15 text-white/85 hover:border-white/30 hover:text-white"
+            ? "bg-primary hover:brightness-110"
+            : "border border-white/15 hover:border-white/30"
         )}
       >
         {pkg.ctaLabel}

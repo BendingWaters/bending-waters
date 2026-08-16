@@ -305,7 +305,7 @@ export default function BusinessRegistrationCTA() {
                   <button
                     type="button"
                     onClick={openModal}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-neutral-950"
+                    className="inline-flex items-center justify-center gap-2 bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-neutral-950"
                   >
                     Start registration
                     <ArrowRight className="size-4" />
@@ -313,7 +313,7 @@ export default function BusinessRegistrationCTA() {
 
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    className="inline-flex items-center justify-center border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                   >
                     Learn what is required
                   </a>
@@ -527,7 +527,7 @@ export default function BusinessRegistrationCTA() {
                       <button
                         type="button"
                         onClick={addDirectorShareholder}
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800"
+                        className="inline-flex items-center justify-center gap-2 bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800"
                       >
                         <Plus className="size-4" />
                         Add person
@@ -880,7 +880,7 @@ export default function BusinessRegistrationCTA() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-6 py-4 text-sm font-semibold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="inline-flex w-full items-center justify-center gap-2 bg-neutral-950 px-6 py-4 text-sm font-semibold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isSubmitting
                       ? "Submitting..."
@@ -907,7 +907,7 @@ export default function BusinessRegistrationCTA() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="mt-8 rounded-full bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+                  className="mt-8 bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
                 >
                   Close
                 </button>

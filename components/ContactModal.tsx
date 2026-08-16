@@ -340,7 +340,7 @@ export default function ContactModal() {
                 type="submit"
                 disabled={isPending}
                 className="group flex items-center gap-2 bg-primary hover:bg-primary/90 disabled:opacity-60
-                  text-white font-bold text-[13.5px] px-7 py-3.5 rounded-full
+                  text-white font-bold text-[13.5px] px-7 py-3.5
                   transition-all duration-150 active:scale-[0.98]"
               >
                 {isPending ? (

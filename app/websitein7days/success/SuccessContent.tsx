@@ -91,7 +91,7 @@ export default function SuccessContent() {
 
             <Link
               href={`/websitein7days/onboarding?reference=${state.reference}`}
-              className="mt-9 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
+              className="mt-9 inline-flex items-center justify-center gap-2 bg-primary px-7 py-4 text-[15px] font-semibold text-white transition hover:brightness-110"
             >
               Complete My Onboarding <ArrowRight className="size-4" />
             </Link>
@@ -118,7 +118,7 @@ export default function SuccessContent() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/websitein7days#packages"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition hover:brightness-110"
+                className="inline-flex items-center justify-center gap-2 bg-primary px-7 py-3.5 text-sm font-semibold text-white transition hover:brightness-110"
               >
                 Try Again
               </Link>
@@ -126,7 +126,7 @@ export default function SuccessContent() {
                 href="https://wa.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/85 transition hover:border-white/30 hover:text-white"
+                className="inline-flex items-center justify-center gap-2 border border-white/15 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/30"
               >
                 <MessageCircle className="size-4" /> Chat on WhatsApp
               </Link>

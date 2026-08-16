@@ -238,7 +238,7 @@ export default function ServicesSection() {
             <button
               type="button"
               onClick={openModal}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-accent transition-all duration-150 hover:bg-secondary active:scale-[0.98]"
+              className="group inline-flex items-center justify-center gap-2 bg-primary px-7 py-3.5 text-sm font-bold text-white transition-all duration-150 hover:bg-secondary active:scale-[0.98]"
             >
               Let&apos;s Talk
               <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

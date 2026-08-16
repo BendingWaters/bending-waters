@@ -3,8 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --font-poppins: Poppins, Arial, Helvetica, sans-serif;
-  --font-jost: Jost, Arial, Helvetica, sans-serif;
   --font-monda: "Courier New", Courier, monospace;
 }
 
@@ -22,11 +20,11 @@
   --color-np-grey: #f5f5f5;
   --color-np-text: #f5f5f5;
 
-  --font-sans: var(--font-jost);
+  --font-sans: var(--font-jost), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-monda);
   --font-bierika: var(--font-bierika-custom);
-  --font-serif: "Playfair Display", serif;
-  --font-sora: "Sora", sans-serif;
+  --font-serif: var(--font-playfair), serif;
+  --font-sora: var(--font-sora), sans-serif;
 
 
   --animate-infinite-scroll: infinite-scroll 40s linear infinite;
