@@ -38,7 +38,16 @@ export default function SuccessContent() {
             amount: result.amount,
             reference: result.reference,
           });
-          trackEvent("payment_successful", { reference: result.reference });
+          trackEvent(
+            "payment_successful",
+            {
+              reference: result.reference,
+              value: result.amount,
+              currency: "NGN",
+              packageName: result.packageName,
+            },
+            `purchase-${result.reference}`
+          );
         } else {
           setState({
             status: "failed",

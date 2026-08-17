@@ -22,7 +22,12 @@ export default function CheckoutStep() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    trackEvent("checkout_started", { packageId: data.selectedPackageId, leadId: data.leadId });
+    trackEvent("checkout_started", {
+      packageId: data.selectedPackageId,
+      leadId: data.leadId,
+      value: pkg?.price,
+      currency: "NGN",
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

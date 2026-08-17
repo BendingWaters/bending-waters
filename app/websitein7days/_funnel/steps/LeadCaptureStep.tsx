@@ -101,7 +101,7 @@ export default function LeadCaptureStep() {
       }
 
       updateData({ ...payload, leadId: result.leadId });
-      trackEvent("lead_form_completed", { leadId: result.leadId });
+      trackEvent("lead_form_completed", { leadId: result.leadId }, `lead-${result.leadId}`);
       goTo("qualification");
       trackEvent("qualification_started", { leadId: result.leadId });
     } catch (submitError) {

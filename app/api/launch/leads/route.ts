@@ -5,6 +5,7 @@ import { upsertLeadByEmail } from "@/lib/launch/leadRepo";
 import { syncLeadToSheet } from "@/lib/launch/googleSheets";
 import { notifySalesOfNewLead, sendLeadThankYouEmail } from "@/lib/launch/email";
 import { getLaunchPackage } from "@/lib/launch/packages";
+import { getMetaClientContext, sendMetaConversionEvent } from "@/lib/launch/metaConversionsApi";
 
 export const runtime = "nodejs";
 
@@ -52,6 +53,16 @@ export async function POST(request: Request) {
       status: "NEW",
       source: payload.source || "",
       campaign: payload.campaign || "",
+    });
+
+    sendMetaConversionEvent({
+      eventName: "Lead",
+      eventId: `lead-${leadId}`,
+      eventSourceUrl: request.headers.get("referer") ?? "https://www.bendingwaters.africa/websitein7days",
+      email: payload.email,
+      phone: payload.phone,
+      client: getMetaClientContext(request),
+      customData: { content_name: selectedPackage?.name ?? payload.selectedPackageId },
     });
 
     return NextResponse.json({ success: true, leadId }, { status: 201 });

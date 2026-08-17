@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifyTransaction } from "@/lib/launch/paystack";
 import { fulfillPayment } from "@/lib/launch/fulfillPayment";
+import { getMetaClientContext, sendMetaConversionEvent } from "@/lib/launch/metaConversionsApi";
 
 export const runtime = "nodejs";
 
@@ -14,6 +15,17 @@ export async function GET(request: Request) {
   try {
     const verified = await verifyTransaction(reference);
     const payment = await fulfillPayment(verified);
+
+    if (payment.status === "PAYMENT_SUCCESSFUL") {
+      sendMetaConversionEvent({
+        eventName: "Purchase",
+        eventId: `purchase-${payment.reference}`,
+        eventSourceUrl: request.url,
+        email: payment.customerEmail,
+        client: getMetaClientContext(request),
+        customData: { value: payment.amount, currency: "NGN", content_name: payment.packageName },
+      });
+    }
 
     return NextResponse.json({
       success: true,
